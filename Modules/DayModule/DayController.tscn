@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Modules/DayModule/DayController.cs" type="Script" id=1]
+
+[node name="DayController" type="CanvasModulate"]
+script = ExtResource( 1 )
+dawnColour = Color( 1, 0.835294, 0.835294, 1 )
+dayColour = Color( 1, 1, 1, 1 )
+duskColour = Color( 1, 0.839216, 0.662745, 1 )
+nightColour = Color( 0.141176, 0.141176, 0.141176, 1 )
+dawnTransitionTime = 30.0
+dayTransitionTime = 15.0
+duskTransitionTime = 15.0
+nightTransitionTime = 30.0

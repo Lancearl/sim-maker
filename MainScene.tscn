@@ -1,0 +1,161 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Modules/TimeModule/Clock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main.cs" type="Script" id=2]
+[ext_resource path="res://UI/PauseButton.cs" type="Script" id=3]
+[ext_resource path="res://UI/TimeLabel.cs" type="Script" id=4]
+[ext_resource path="res://Modules/DayModule/DayController.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/SeasonLabel.cs" type="Script" id=6]
+[ext_resource path="res://UI/DateLabel.cs" type="Script" id=7]
+[ext_resource path="res://Modules/TimeModule/Calendar.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Modules/SeasonModule/SeasonController.tscn" type="PackedScene" id=9]
+[ext_resource path="res://UI/HourAddButton.cs" type="Script" id=10]
+[ext_resource path="res://UI/DayAddButton.cs" type="Script" id=11]
+[ext_resource path="res://UI/HourSubtractButton.cs" type="Script" id=12]
+[ext_resource path="res://UI/DaySubtractButton.cs" type="Script" id=13]
+[ext_resource path="res://Modules/WeatherModule/WeatherController.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Modules/SerialisationModule/SerialisationController.tscn" type="PackedScene" id=15]
+[ext_resource path="res://UI/SaveButton.cs" type="Script" id=16]
+[ext_resource path="res://UI/WeatherLabel.cs" type="Script" id=17]
+[ext_resource path="res://UI/LoadButton.cs" type="Script" id=18]
+
+[node name="MainScene" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Clock" parent="." instance=ExtResource( 1 )]
+
+[node name="SerialisationController" parent="." instance=ExtResource( 15 )]
+
+[node name="Calendar" parent="." instance=ExtResource( 8 )]
+
+[node name="DayController" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="SeasonController" parent="." instance=ExtResource( 9 )]
+
+[node name="WeatherController" parent="." instance=ExtResource( 14 )]
+position = Vector2( 512, -16 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 5.0
+margin_right = -5.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+margin_right = 1019.0
+margin_bottom = 595.0
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer"]
+margin_left = 910.0
+margin_right = 1019.0
+margin_bottom = 595.0
+
+[node name="TimeLabel" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 109.0
+margin_bottom = 14.0
+text = "00:00"
+script = ExtResource( 4 )
+
+[node name="DateLabel" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 109.0
+margin_bottom = 32.0
+text = "1 Monday, Year 1"
+script = ExtResource( 7 )
+
+[node name="SeasonLabel" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 109.0
+margin_bottom = 50.0
+text = "Spring"
+script = ExtResource( 6 )
+
+[node name="WeatherLabel" type="Label" parent="UI/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 109.0
+margin_bottom = 68.0
+script = ExtResource( 17 )
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/CenterContainer"]
+margin_left = 429.0
+margin_top = 266.0
+margin_right = 594.0
+margin_bottom = 334.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer/HBoxContainer"]
+margin_right = 52.0
+margin_bottom = 68.0
+
+[node name="HourSubtractButton" type="Button" parent="UI/CenterContainer/HBoxContainer/VBoxContainer"]
+margin_right = 52.0
+margin_bottom = 20.0
+text = "Hour -"
+script = ExtResource( 12 )
+
+[node name="DaySubtractButton" type="Button" parent="UI/CenterContainer/HBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 52.0
+margin_bottom = 44.0
+text = "Day -"
+script = ExtResource( 13 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/CenterContainer/HBoxContainer"]
+margin_left = 56.0
+margin_right = 106.0
+margin_bottom = 68.0
+
+[node name="PauseButton" type="Button" parent="UI/CenterContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 50.0
+margin_bottom = 20.0
+text = "Pause"
+script = ExtResource( 3 )
+
+[node name="SaveButton" type="Button" parent="UI/CenterContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 24.0
+margin_right = 50.0
+margin_bottom = 44.0
+text = "Save"
+script = ExtResource( 16 )
+
+[node name="LoadButton" type="Button" parent="UI/CenterContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 48.0
+margin_right = 50.0
+margin_bottom = 68.0
+text = "Load"
+script = ExtResource( 18 )
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="UI/CenterContainer/HBoxContainer"]
+margin_left = 110.0
+margin_right = 165.0
+margin_bottom = 68.0
+
+[node name="HourAddButton" type="Button" parent="UI/CenterContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 55.0
+margin_bottom = 20.0
+text = "Hour +"
+script = ExtResource( 10 )
+
+[node name="DayAddButton" type="Button" parent="UI/CenterContainer/HBoxContainer/VBoxContainer3"]
+margin_top = 24.0
+margin_right = 55.0
+margin_bottom = 44.0
+text = "Day +"
+script = ExtResource( 11 )
+
+[connection signal="button_up" from="UI/CenterContainer/HBoxContainer/VBoxContainer/HourSubtractButton" to="UI/CenterContainer/HBoxContainer/VBoxContainer/HourSubtractButton" method="_on_HourSubtractButton_button_up"]
+[connection signal="button_up" from="UI/CenterContainer/HBoxContainer/VBoxContainer/DaySubtractButton" to="UI/CenterContainer/HBoxContainer/VBoxContainer/DaySubtractButton" method="_on_DaySubtractButton_button_up"]
+[connection signal="button_up" from="UI/CenterContainer/HBoxContainer/VBoxContainer2/PauseButton" to="UI/CenterContainer/HBoxContainer/VBoxContainer2/PauseButton" method="_on_Button_button_up"]
+[connection signal="button_up" from="UI/CenterContainer/HBoxContainer/VBoxContainer2/SaveButton" to="UI/CenterContainer/HBoxContainer/VBoxContainer2/SaveButton" method="_on_SaveButton_button_up"]
+[connection signal="button_up" from="UI/CenterContainer/HBoxContainer/VBoxContainer2/LoadButton" to="UI/CenterContainer/HBoxContainer/VBoxContainer2/LoadButton" method="_on_LoadButton_button_up"]
+[connection signal="button_up" from="UI/CenterContainer/HBoxContainer/VBoxContainer3/HourAddButton" to="UI/CenterContainer/HBoxContainer/VBoxContainer3/HourAddButton" method="_on_HourAddButton_button_up"]
+[connection signal="button_up" from="UI/CenterContainer/HBoxContainer/VBoxContainer3/DayAddButton" to="UI/CenterContainer/HBoxContainer/VBoxContainer3/DayAddButton" method="_on_DayAddButton_button_up"]

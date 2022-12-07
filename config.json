@@ -1,0 +1,24 @@
+{
+  "HourLength": 60,
+  "DayLength": 24,
+  "SeasonLength": 60,
+  "DawnTimeHour": 6,
+  "DayTimeHour": 7,
+  "DuskTimeHour": 17,
+  "NightTimeHour": 18,
+  "Seasons": [
+    { "Name": "Spring" },
+    { "Name": "Summer" },
+    { "Name": "Autumn" },
+    { "Name": "Winter" }
+  ],
+  "Days": [
+    { "Name": "Monday" },
+    { "Name": "Tuesday" },
+    { "Name": "Wednesday" },
+    { "Name": "Thursday" },
+    { "Name": "Friday" },
+    { "Name": "Saturday" },
+    { "Name": "Sunday" }
+  ]
+}

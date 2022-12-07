@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sim-maker", "Sim-maker.csproj", "{42AF99D1-89B4-407B-B290-9186F976C00E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42AF99D1-89B4-407B-B290-9186F976C00E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42AF99D1-89B4-407B-B290-9186F976C00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42AF99D1-89B4-407B-B290-9186F976C00E}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{42AF99D1-89B4-407B-B290-9186F976C00E}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{42AF99D1-89B4-407B-B290-9186F976C00E}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{42AF99D1-89B4-407B-B290-9186F976C00E}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
