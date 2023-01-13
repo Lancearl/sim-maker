@@ -4,5 +4,5 @@ Sim Maker is designed to be a toolset for creating 2D top down simulation games 
 
 ## Setup
 
-[x] Install Godot.
-[x] Clone this repository and open the project.godot file in Godot.
+-   Install Godot.
+-   Clone this repository and open the project.godot file in Godot.

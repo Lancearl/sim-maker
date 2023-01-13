@@ -15,7 +15,7 @@ public class SerialisationController : Node
         var fileName = !string.IsNullOrWhiteSpace(message.Value) ? message.Value : defaultFileName;
         var saveData = new Dictionary<string, object>();
         var array = new Godot.Collections.Array<string>();
-        var persistNodePaths = Utils.GetNodePathsOfType<IPersist>(GetTree().Root, array);
+        var persistNodePaths = GetTree().Root.GetNodePathsOfType<IPersist>(array);
         foreach (var nodePath in persistNodePaths)
         {
             var persistNode = GetNode(nodePath) as IPersist;
@@ -58,7 +58,7 @@ public class SerialisationController : Node
                 saveData = JsonSerializer.Deserialize<Dictionary<string, string>>(saveFile.GetLine());
 
             var array = new Godot.Collections.Array<string>();
-            var persistNodePaths = Utils.GetNodePathsOfType<IPersist>(GetTree().Root, array);
+            var persistNodePaths = GetTree().Root.GetNodePathsOfType<IPersist>(array);
             foreach (var nodePath in persistNodePaths)
             {
                 var persistNode = GetNode(nodePath) as IPersist;
