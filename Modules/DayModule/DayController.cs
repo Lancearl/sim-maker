@@ -6,10 +6,8 @@ using Godot;
 /// </summary>
 public class DayController : CanvasModulate, IPersist
 {
-    [Export]
-    public Color dawnColour, dayColour, duskColour, nightColour;
-    [Export]
-    public float dawnTransitionTime, dayTransitionTime, duskTransitionTime, nightTransitionTime;
+    [Export] public Color dawnColour, dayColour, duskColour, nightColour;
+    [Export] public float dawnTransitionTime, dayTransitionTime, duskTransitionTime, nightTransitionTime;
 
     private IMessageBrokerService messageBroker => GetNode<IMessageBrokerService>(Strings.MessageBrokerNodePath);
     private float elapsedTime = 0;

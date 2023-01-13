@@ -7,7 +7,8 @@ public class PauseButton : Button
 
     public void _on_Button_button_up()
     {
-        GetTree().Paused = !paused;
+        paused = !paused;
+        GetTree().Paused = paused;
         messageBroker.SendMessage(new Message<object>()
         {
             Type = MessageType.OnPause,

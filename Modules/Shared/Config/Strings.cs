@@ -1,8 +1,23 @@
 public static class Strings
 {
+    #region Animation
+    public const string AnimationParameters = "parameters/playback";
+    public const string AnimationStateIdle = "Idle";
+    public const string AnimationStateWalk = "Walk";
+    #endregion
+
+    #region Inputs
+    public const string Left = "ui_left";
+    public const string Right = "ui_right";
+    public const string Up = "ui_up";
+    public const string Down = "ui_down";
+    public const string Debug = "ui_debug";
+    #endregion
+
     #region Paths
     public const string MessageBrokerNodePath = "/root/MessageBroker";
     public const string ConfigFilePath = "res://config.json";
+    public const string SwitchRegistryFilePath = "res://switchRegistry.json";
     #endregion
 
     #region Weathers
@@ -36,6 +51,9 @@ public static class Strings
     public const string KeyCurrentSeason = "CurrentSeason";
     public const string KeyCurrentWeather = "CurrentWeather";
     public const string KeyCurrentDayPhase = "CurrentDayPhase";
+    public const string KeyPlayerCurrentFacing = "PlayerCurrentFacing";
+    public const string KeyPlayerCurrentPositionX = "PlayerCurrentPositionX";
+    public const string KeyPlayerCurrentPositionY = "PlayerCurrentPositionY";
     #endregion
 
     #region Extensions

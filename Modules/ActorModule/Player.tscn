@@ -1,0 +1,168 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://Modules/ActorModule/Player.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Actor/MediumShadow.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Actor/BaseHuman.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Animations/Actor/IdleDown.tres" type="Animation" id=4]
+[ext_resource path="res://Assets/Animations/Actor/IdleRight.tres" type="Animation" id=5]
+[ext_resource path="res://Assets/Animations/Actor/WalkRight.tres" type="Animation" id=6]
+[ext_resource path="res://Assets/Animations/Actor/IdleLeft.tres" type="Animation" id=7]
+[ext_resource path="res://Assets/Animations/Actor/WalkUp.tres" type="Animation" id=8]
+[ext_resource path="res://Assets/Animations/Actor/BlinkStart.tres" type="Animation" id=9]
+[ext_resource path="res://Assets/Animations/Actor/IdleUp.tres" type="Animation" id=10]
+[ext_resource path="res://Assets/Animations/Actor/BlinkStop.tres" type="Animation" id=11]
+[ext_resource path="res://Assets/Animations/Actor/WalkDown.tres" type="Animation" id=12]
+[ext_resource path="res://Assets/Animations/Actor/WalkLeft.tres" type="Animation" id=13]
+[ext_resource path="res://Modules/ActorModule/Collision/PickupRadius.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Modules/ActorModule/Collision/Hitbox.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Assets/Shader/WhiteColour.shader" type="Shader" id=16]
+[ext_resource path="res://Modules/ActorModule/Collision/Hurtbox.tscn" type="PackedScene" id=21]
+
+[sub_resource type="ShaderMaterial" id=18]
+shader = ExtResource( 16 )
+shader_param/active = false
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "IdleDown"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "IdleLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "IdleRight"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "IdleUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=2]
+blend_point_0/node = SubResource( 8 )
+blend_point_0/pos = Vector2( 0, 1.1 )
+blend_point_1/node = SubResource( 9 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 10 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 11 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "WalkDown"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "WalkLeft"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "WalkRight"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "WalkUp"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=3]
+blend_point_0/node = SubResource( 12 )
+blend_point_0/pos = Vector2( 0, 1.1 )
+blend_point_1/node = SubResource( 13 )
+blend_point_1/pos = Vector2( -1, 0 )
+blend_point_2/node = SubResource( 14 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 15 )
+blend_point_3/pos = Vector2( 0, -1.1 )
+min_space = Vector2( -1, -1.1 )
+max_space = Vector2( 1, 1.1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=4]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/Idle/node = SubResource( 2 )
+states/Idle/position = Vector2( 500, 144 )
+states/Walk/node = SubResource( 3 )
+states/Walk/position = Vector2( 653, 144 )
+transitions = [ "Walk", "Idle", SubResource( 4 ), "Idle", "Walk", SubResource( 5 ) ]
+start_node = "Idle"
+graph_offset = Vector2( 86, -45 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+
+[sub_resource type="CapsuleShape2D" id=16]
+
+[sub_resource type="CapsuleShape2D" id=17]
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+animationPlayerPath = NodePath("AnimationPlayer")
+animationTreePath = NodePath("AnimationTree")
+
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( 0, -1 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 18 )
+position = Vector2( 0, -16 )
+texture = ExtResource( 3 )
+hframes = 4
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/BlinkStart = ExtResource( 9 )
+anims/BlinkStop = ExtResource( 11 )
+anims/IdleDown = ExtResource( 4 )
+anims/IdleLeft = ExtResource( 7 )
+anims/IdleRight = ExtResource( 5 )
+anims/IdleUp = ExtResource( 10 )
+anims/WalkDown = ExtResource( 12 )
+anims/WalkLeft = ExtResource( 13 )
+anims/WalkRight = ExtResource( 6 )
+anims/WalkUp = ExtResource( 8 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 6 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 7 )
+parameters/Idle/blend_position = Vector2( 0.00399995, 0.231733 )
+parameters/Walk/blend_position = Vector2( -0.01, 0.42 )
+
+[node name="HitboxPivot" type="Position2D" parent="."]
+position = Vector2( 0, -10 )
+rotation = 1.5708
+
+[node name="Hitbox" parent="HitboxPivot" instance=ExtResource( 15 )]
+position = Vector2( 15, 0 )
+collision_mask = 8
+
+[node name="CollisionShape2D" parent="HitboxPivot/Hitbox" index="0"]
+shape = SubResource( 16 )
+disabled = true
+
+[node name="Hurtbox" parent="." instance=ExtResource( 21 )]
+visible = false
+position = Vector2( -2, -9 )
+scale = Vector2( 0.853408, 0.764884 )
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 2.524, -5.68 )
+shape = SubResource( 17 )
+
+[node name="PickupRadius" parent="." instance=ExtResource( 14 )]
+visible = false
+position = Vector2( 0, -11 )
+
+[node name="CollisionShape2D" parent="PickupRadius" index="0"]
+scale = Vector2( 3.39353, 3.39353 )
+
+[editable path="HitboxPivot/Hitbox"]
+[editable path="Hurtbox"]
+[editable path="PickupRadius"]
